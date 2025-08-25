@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Axenor Global Services – Team Leader Portal</title>
+  <style>
+    :root{
+      --bg:#0c0c0f;
+      --card:#141419;
+      --text:#ffffff;
+      --muted:#b8b8bf;
+      --ring:#25c2ff;
+      --shadow: 0 10px 25px rgba(0,0,0,.45);
+      --radius: 20px;
+
+      --accent-1:#4aa3ff;  
+      --accent-2:#ffd166;  
+      --accent-3:#7bd389;  
+      --accent-4:#ff8fab;  
+      --accent-5:#c69bff;  
+      --accent-6:#ffa94d;  
+      --accent-x:#ff6b6b;  
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 800px at 10% -10%, rgba(37,194,255,.08), transparent 60%),
+                  radial-gradient(1000px 700px at 110% 10%, rgba(255,107,107,.08), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+    }
+
+    .container{max-width:1100px; margin:0 auto; padding:28px 18px 48px}
+    header{display:grid; gap:8px; justify-items:center; margin-bottom:22px}
+    .brand{font-weight:800; letter-spacing:.5px; font-size: clamp(22px, 2.3vw, 34px)}
+    .brand strong{background:linear-gradient(90deg,var(--ring),#a78bfa 60%,#ff6b6b); -webkit-background-clip:text; background-clip:text; color:transparent}
+
+    .grid{
+      display:grid; gap:18px; 
+      grid-template-columns: repeat( auto-fit, minmax(220px,1fr) );
+      align-items:stretch;
+    }
+
+    .card{
+      position:relative; isolation:isolate; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      padding:20px 18px; 
+      box-shadow: var(--shadow);
+      cursor:pointer; outline:none; 
+      transform: translate3d(0,0,0);
+      transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+      overflow:hidden;
+    }
+    .card::before{
+      content:""; position:absolute; inset:-2px; z-index:-1; border-radius:inherit; filter: blur(16px); opacity:.55; transition:opacity .25s ease;
+      background: conic-gradient(from 140deg, transparent 0 20%, currentColor 22% 28%, transparent 30% 70%, currentColor 72% 78%, transparent 80% 100%);
+    }
+    .card:hover{ transform: translateY(-6px) scale(1.01); box-shadow: 0 14px 40px rgba(0,0,0,.55) }
+    .card:focus-visible{ box-shadow: 0 0 0 3px rgba(37,194,255,.35), var(--shadow); border-color: rgba(37,194,255,.6) }
+
+    .iconwrap{width:56px; height:56px; display:grid; place-items:center; border-radius:16px; margin-bottom:14px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10)}
+    .title{font-weight:700; font-size:18px; letter-spacing:.2px; color:var(--text)}
+    .desc{color:var(--muted); font-size:14px; line-height:1.5; margin-top:6px}
+
+    .card .shine{ position:absolute; inset:-1px; border-radius:inherit; background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.06), transparent 70%); transform: translateX(-100%); animation: shine 2.8s ease-in-out infinite; pointer-events:none }
+    @keyframes shine{ 0%{transform:translateX(-120%)} 55%{transform:translateX(120%)} 100%{transform:translateX(120%)} }
+
+    .card:hover .iconwrap{ animation: float 2s ease-in-out infinite }
+    @keyframes float{ 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-4px) } }
+
+    .card[data-accent="1"], .card[data-accent="1"] * { color: var(--accent-1) }
+    .card[data-accent="2"], .card[data-accent="2"] * { color: var(--accent-2) }
+    .card[data-accent="3"], .card[data-accent="3"] * { color: var(--accent-3) }
+    .card[data-accent="4"], .card[data-accent="4"] * { color: var(--accent-4) }
+    .card[data-accent="5"], .card[data-accent="5"] * { color: var(--accent-5) }
+    .card[data-accent="6"], .card[data-accent="6"] * { color: var(--accent-6) }
+    .card[data-accent="x"], .card[data-accent="x"] * { color: var(--accent-x) }
+
+    footer{margin-top:26px; text-align:center; color:var(--muted); font-size:12px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header aria-label="Axenor header">
+      <div class="brand" aria-label="brand">Axenor Global Services – <strong>Team Leader Portal</strong></div>
+    </header>
+
+    <main class="grid" id="cards" aria-label="Quick link cards">
+      <!-- Attendance -->
+      <button class="card" data-key="attendance" data-accent="1">
+        <span class="shine"></span>
+        <div class="iconwrap">📅</div>
+        <div class="title">Attendance</div>
+        <div class="desc">Mark and view attendance</div>
+      </button>
+
+      <button class="card" data-key="attendanceHistory" data-accent="1">
+        <span class="shine"></span>
+        <div class="iconwrap">🕒</div>
+        <div class="title">Attendance History</div>
+        <div class="desc">View past attendance records</div>
+      </button>
+
+      <button class="card" data-key="jobPortalForm" data-accent="2">
+        <span class="shine"></span>
+        <div class="iconwrap">📝</div>
+        <div class="title">Job Portal Form</div>
+        <div class="desc">Submit job requests or applications</div>
+      </button>
+
+      <button class="card" data-key="trainingUserForm" data-accent="3">
+        <span class="shine"></span>
+        <div class="iconwrap">🎓</div>
+        <div class="title">Training User Form</div>
+        <div class="desc">Register for training sessions</div>
+      </button>
+
+      <button class="card" data-key="trainingUserHistory" data-accent="3">
+        <span class="shine"></span>
+        <div class="iconwrap">📖</div>
+        <div class="title">Training User History</div>
+        <div class="desc">View training completion records</div>
+      </button>
+
+      <button class="card" data-key="liveEmployeeForm" data-accent="4">
+        <span class="shine"></span>
+        <div class="iconwrap">👥</div>
+        <div class="title">Live Employee Form</div>
+        <div class="desc">Add or update employee data</div>
+      </button>
+
+      <button class="card" data-key="dataEntryShareFolderSheet" data-accent="2">
+        <span class="shine"></span>
+        <div class="iconwrap">📂</div>
+        <div class="title">Data Entry Share Folder Sheet</div>
+        <div class="desc">Access shared data entry sheets</div>
+      </button>
+
+      <button class="card" data-key="dailyPointAddForm" data-accent="3">
+        <span class="shine"></span>
+        <div class="iconwrap">➕</div>
+        <div class="title">Daily Point Add Form</div>
+        <div class="desc">Submit daily performance points</div>
+      </button>
+
+      <button class="card" data-key="dailyPointHistorySheet" data-accent="3">
+        <span class="shine"></span>
+        <div class="iconwrap">📊</div>
+        <div class="title">Daily Point History Sheet</div>
+        <div class="desc">View historical performance data</div>
+      </button>
+
+      <button class="card" data-key="monthlyPayForm" data-accent="5">
+        <span class="shine"></span>
+        <div class="iconwrap">💰</div>
+        <div class="title">Monthly Pay Form</div>
+        <div class="desc">Submit payroll details</div>
+      </button>
+
+      <button class="card" data-key="permissionForm" data-accent="5">
+        <span class="shine"></span>
+        <div class="iconwrap">📝</div>
+        <div class="title">Permission Form</div>
+        <div class="desc">Apply for leave or permission</div>
+      </button>
+
+      <button class="card" data-key="permissionHistorySheet" data-accent="5">
+        <span class="shine"></span>
+        <div class="iconwrap">📜</div>
+        <div class="title">Permission History Sheet</div>
+        <div class="desc">View permission records</div>
+      </button>
+
+      <button class="card" data-key="itAssetTrackForm" data-accent="6">
+        <span class="shine"></span>
+        <div class="iconwrap">💻</div>
+        <div class="title">IT Asset Track Form</div>
+        <div class="desc">Track IT equipment assigned</div>
+      </button>
+
+      <button class="card" data-key="qcLogSheet" data-accent="4">
+        <span class="shine"></span>
+        <div class="iconwrap">📝</div>
+        <div class="title">QC Log Sheet</div>
+        <div class="desc">Log quality check details</div>
+      </button>
+
+      <button class="card" data-key="qcUsersPool" data-accent="4">
+        <span class="shine"></span>
+        <div class="iconwrap">👥</div>
+        <div class="title">QC Users Pool</div>
+        <div class="desc">View all QC users</div>
+      </button>
+
+      <button class="card" data-key="dataEntryLogSheet" data-accent="2">
+        <span class="shine"></span>
+        <div class="iconwrap">🗂️</div>
+        <div class="title">Data Entry Log Sheet</div>
+        <div class="desc">Check data entry records</div>
+      </button>
+
+      <button class="card" data-key="dataEntryUserPool" data-accent="2">
+        <span class="shine"></span>
+        <div class="iconwrap">👥</div>
+        <div class="title">Data Entry User Pool</div>
+        <div class="desc">View all data entry users</div>
+      </button>
+
+      <!-- Close -->
+      <button class="card" data-key="close" data-accent="x">
+        <span class="shine"></span>
+        <div class="iconwrap">❌</div>
+        <div class="title">Close</div>
+        <div class="desc">Exit this portal</div>
+      </button>
+    </main>
+  </div>
+
+  <script>
+    const LINKS = {
+      attendance: 'https://docs.google.com/forms/d/e/1FAIpQLSeXKiXQSfFe6p4YuKr6dB9XHH6wpCnEQfAm5SBYj-P_MP-ESQ/viewform?usp=sharing&ouid=105973298206128175177',
+      attendanceHistory: 'https://docs.google.com/spreadsheets/d/1DjvgwDNBe2mEfME5TXDr398J0qAdV0PoofmTUrU4HNg/edit?usp=sharing',
+      jobPortalForm: 'https://docs.google.com/forms/d/e/1FAIpQLSedAxP94DmzbcUuaOttavYjenC2PEzYWcw2pse2mrW2hYKdJw/viewform?usp=sharing&ouid=105973298206128175177',
+      trainingUserForm: 'https://docs.google.com/forms/d/e/1FAIpQLSee6bXwtr7vZrXD2UyqyctvEx-9fsXfqsV5SLKbUk0lGNKEzA/viewform?usp=sharing&ouid=105973298206128175177',
+      trainingUserHistory: 'https://docs.google.com/spreadsheets/d/1RCTuA-bzFArnwO39cISAUV-g1k3e3nv_NWl00mcU-II/edit?usp=sharing',
+      liveEmployeeForm: 'https://docs.google.com/forms/d/e/1FAIpQLScjPM6TEC0CsPEexmm4-7HcVFC48j4hj18C_DKGqM3Q1Y1UyA/viewform?usp=sharing&ouid=105973298206128175177',
+      dataEntryShareFolderSheet: 'https://docs.google.com/spreadsheets/d/1UQqWgHOSDBvr-Gk7I26cMeEyEAcNHOJQV2b3ykkdhdg/edit?usp=sharing',
+      dailyPointAddForm: 'https://docs.google.com/forms/d/e/1FAIpQLSdQBzTdFoORUIGYDox9TuEGU9iRibv4h7ahi7-po-Dwy45vNQ/viewform?usp=sharing&ouid=105973298206128175177',
+      dailyPointHistorySheet: 'https://docs.google.com/spreadsheets/d/1EEZXIFrogZsL_meH_pR43WsBvBOh68dtsfZjGEYo8C0/edit?usp=sharing',
+      monthlyPayForm: 'https://docs.google.com/forms/d/e/1FAIpQLSf1CYkOuVVygnZPKvpgJOJAqOS6H-jfnpezg5FDl9DvD00GNg/viewform?usp=sharing&ouid=105973298206128175177',
+      permissionForm: 'https://docs.google.com/forms/d/e/1FAIpQLSfrw-60g8HjZrz9Wvs6MjS5Px1NXROw2Snuxt7KKnlvajoO-g/viewform?usp=sharing&ouid=105973298206128175177',
+      permissionHistorySheet: 'https://docs.google.com/spreadsheets/d/163iIJT8wcB3CsmINYu1YV00rHTnriyffR39vBOAeYM4/edit?usp=sharing',
+      itAssetTrackForm: 'https://docs.google.com/forms/d/e/1FAIpQLSd2WkMQ4TobFXa-T-_PZnNAHWZUBh73jaTgY0evjKImif947Q/viewform?usp=sharing&ouid=105973298206128175177',
+      qcLogSheet: 'https://docs.google.com/spreadsheets/d/17quR1CuUmxaHrF8b0rTYJ4aj6Y-AUtUwR1ePmU-QrFE/edit?usp=sharing',
+      qcUsersPool: 'https://drive.google.com/drive/folders/1dGs6bKNTGANnAI9Sepk8zLhzQb4Nlzor?usp=drive_link',
+      dataEntryLogSheet: 'https://docs.google.com/spreadsheets/d/1UQqWgHOSDBvr-Gk7I26cMeEyEAcNHOJQV2b3ykkdhdg/edit?usp=sharing',
+      dataEntryUserPool: 'https://drive.google.com/drive/folders/1i9L_gvr5OHggKqhagzADAxPd44S1p7Y2?usp=drive_link',
+    };
+
+    function openLink(url){
+      if(!url){
+        alert('Link not yet set. Please configure the correct URL in the code.');
+        return;
+      }
+      const win = window.open(url, '_blank', 'noopener');
+      if(!win){ alert('Popup blocked. Please allow pop‑ups for this site.'); }
+    }
+
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        const key = card.getAttribute('data-key');
+        if(key === 'close'){
+          window.close();
+          document.body.style.transition = 'opacity .35s ease';
+          document.body.style.opacity = '0';
+          setTimeout(()=>{ location.href = 'about:blank'; }, 380);
+          return;
+        }
+        openLink(LINKS[key]);
+      });
+    });
+  </script>
+</body>
+</html>
